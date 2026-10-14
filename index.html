@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4b2109">
+  <meta name="description" content="FANSHINE Dalgona Coffee — pre-order minuman dari KEBISIK IX-B.">
+  <title>FANSHINE — Dalgona Coffee</title>
+  <style>
+    :root {
+      --cream: #fff4df;
+      --cream-2: #f4e2c5;
+      --coffee: #4a210b;
+      --brown: #75400f;
+      --gold: #c99b4b;
+      --ink: #28170d;
+      --muted: #786453;
+      --white: #fffdf8;
+      --line: rgba(74,33,11,.14);
+      --shadow: 0 18px 50px rgba(53,27,9,.12);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .topbar {
+      background: var(--coffee); color: #fff6e8; text-align: center;
+      padding: 9px 14px; font-size: .78rem; letter-spacing: .08em;
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,244,223,.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: 1120px; margin: auto; padding: 12px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand-lockup { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand-lockup img { width: 44px; height: 44px; object-fit: contain; }
+    .brand-name { font-weight: 950; letter-spacing: .09em; line-height: 1.05; }
+    .brand-sub { display: block; margin-top: 4px; font-size: .68rem; color: var(--muted); letter-spacing: .04em; }
+    .nav-links { display: flex; align-items: center; gap: 20px; font-size: .9rem; font-weight: 700; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--brown); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 0; border-radius: 999px; padding: 13px 20px; cursor: pointer;
+      text-decoration: none; font-weight: 800; transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--coffee); color: white; box-shadow: 0 8px 22px rgba(74,33,11,.2); }
+    .btn-secondary { background: var(--cream-2); color: var(--coffee); border: 1px solid var(--line); }
+    .btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+    .hero {
+      max-width: 1120px; margin: auto; padding: 46px 20px 54px;
+      display: grid; grid-template-columns: 1.03fr .97fr; gap: 44px; align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px;
+      background: #f0dfc2; color: var(--brown); border-radius: 999px;
+      font-size: .76rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase;
+    }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: .98; letter-spacing: -.065em; margin: 18px 0; }
+    h1 em { font-style: normal; color: var(--brown); }
+    .hero p { max-width: 540px; color: var(--muted); font-size: 1.04rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 24px; font-size: .83rem; font-weight: 700; color: var(--muted); }
+    .hero-poster-wrap {
+      background: var(--white); padding: 10px; border-radius: 26px;
+      box-shadow: var(--shadow); transform: rotate(1deg); border: 1px solid rgba(74,33,11,.08);
+      max-width: 470px; width: 100%; justify-self: center;
+    }
+    /* Poster sengaja memakai height:auto agar rasio dan ukuran proporsional aslinya tidak berubah. */
+    .hero-poster { display: block; width: 100%; height: auto; border-radius: 17px; }
+    section { scroll-margin-top: 90px; }
+    .section { padding: 58px 20px; }
+    .section-inner { max-width: 1040px; margin: auto; }
+    .section-heading { text-align: center; margin-bottom: 30px; }
+    .section-heading .eyebrow { margin-bottom: 10px; }
+    h2 { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.045em; margin: 7px 0 10px; }
+    .section-heading p { color: var(--muted); margin: 0 auto; max-width: 590px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; max-width: 760px; margin: auto; }
+    .menu-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; box-shadow: 0 10px 30px rgba(53,27,9,.06);
+    }
+    .cup-art {
+      width: 72px; height: 88px; margin-bottom: 17px; position: relative;
+      border: 3px solid #b9a083; border-top: 7px solid #b9a083;
+      border-radius: 7px 7px 20px 20px; background: linear-gradient(to bottom, #a66b31 0 30%, #f8f0df 30% 100%);
+      transform: perspective(100px) rotateX(-3deg);
+    }
+    .cup-art.large { width: 83px; height: 100px; }
+    .cup-art::after { content: ""; position: absolute; right: -17px; top: 19px; width: 18px; height: 28px; border: 4px solid #b9a083; border-left: 0; border-radius: 0 13px 13px 0; }
+    .size-tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--brown); font-weight: 900; }
+    .menu-card h3 { margin: 3px 0; font-size: 1.45rem; }
+    .price { font-size: 1.65rem; font-weight: 950; color: var(--brown); margin: 8px 0 4px; }
+    .menu-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .notice {
+      margin: 22px auto 0; max-width: 760px; padding: 14px 17px;
+      border: 1px dashed #b99564; background: #f7e8cf; border-radius: 14px;
+      color: #68411f; font-size: .88rem;
+    }
+    .order-section { background: #f3e1c3; }
+    .order-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 22px; align-items: start; }
+    .order-aside, .form-card { border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .order-aside { padding: 26px; }
+    .order-aside img { display: block; width: 100px; height: 100px; object-fit: contain; margin-bottom: 16px; }
+    .order-aside p { color: var(--muted); font-size: .93rem; }
+    .info-row { display: flex; gap: 10px; align-items: flex-start; margin-top: 15px; font-size: .88rem; }
+    .info-icon { flex: 0 0 30px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 10px; background: #f2e2c8; }
+    .form-card { padding: clamp(20px, 4vw, 34px); }
+    .form-card h3 { margin: 0 0 4px; font-size: 1.45rem; }
+    .form-intro { margin: 0 0 22px; color: var(--muted); font-size: .9rem; }
+    .field { margin-bottom: 17px; }
+    label, .field-label { display: block; font-weight: 800; font-size: .88rem; margin-bottom: 7px; }
+    input, select, textarea {
+      width: 100%; border: 1px solid #ddcbb1; border-radius: 12px; padding: 12px 13px;
+      background: #fffdf9; color: var(--ink); outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--brown); box-shadow: 0 0 0 3px rgba(117,64,15,.12); }
+    textarea { min-height: 82px; resize: vertical; }
+    .size-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .size-option { position: relative; }
+    .size-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .size-option label {
+      display: block; margin: 0; border: 1px solid #ddcbb1; border-radius: 13px; padding: 14px;
+      cursor: pointer; background: #fffdf9; transition: .2s;
+    }
+    .size-option strong { display: block; color: var(--coffee); font-size: .96rem; }
+    .size-option small { color: var(--muted); font-weight: 600; }
+    .size-option input:checked + label { border: 2px solid var(--brown); background: #f8ebd5; padding: 13px; box-shadow: 0 0 0 3px rgba(117,64,15,.08); }
+    .size-option input:focus-visible + label { outline: 3px solid #c99b4b; }
+    .qty-row { display: flex; align-items: center; gap: 12px; }
+    .qty-btn { width: 42px; height: 42px; border: 1px solid #ddcbb1; background: #f8ebd5; color: var(--coffee); border-radius: 12px; font-size: 1.35rem; font-weight: 900; cursor: pointer; }
+    #quantity { width: 80px; text-align: center; font-weight: 900; }
+    .total-box { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px; background: #f6e8d2; border-radius: 14px; margin: 20px 0; }
+    .total-box span { color: var(--muted); font-size: .88rem; }
+    .total-box strong { font-size: 1.55rem; color: var(--brown); }
+    .form-error { display: none; color: #a12d1f; background: #fff0ed; border: 1px solid #f0c3bb; padding: 11px 13px; border-radius: 10px; margin: 12px 0; font-size: .88rem; }
+    .smallprint { font-size: .76rem; color: var(--muted); margin: 12px 0 0; }
+    .closed-banner { display: none; background: #fbe4df; color: #872e21; border: 1px solid #efc3bb; padding: 14px; border-radius: 12px; margin-bottom: 18px; font-weight: 800; }
+    .success-overlay {
+      display: none; position: fixed; inset: 0; z-index: 100; background: rgba(32,19,10,.65);
+      padding: 18px; align-items: center; justify-content: center; overflow-y: auto;
+    }
+    .success-overlay.show { display: flex; }
+    .success-card {
+      width: min(100%, 510px); max-height: 92vh; overflow-y: auto; background: var(--white);
+      border-radius: 26px; padding: 28px; text-align: center; box-shadow: 0 30px 90px rgba(0,0,0,.25);
+      animation: pop .35s ease-out;
+    }
+    @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+    .success-mark { width: 70px; height: 70px; margin: 0 auto 14px; border-radius: 50%; display: grid; place-items: center; background: #e1f2d8; color: #326b29; font-size: 2.1rem; animation: bounce .5s .1s both; }
+    @keyframes bounce { 0% { transform: scale(.5); } 70% { transform: scale(1.13); } 100% { transform: scale(1); } }
+    .success-card h2 { font-size: 2rem; }
+    .success-card p { color: var(--muted); }
+    .summary { text-align: left; padding: 14px; border-radius: 14px; background: #f7ead6; margin: 18px 0; font-size: .9rem; }
+    .summary div { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; }
+    .summary strong { text-align: right; overflow-wrap: anywhere; }
+    .success-actions { display: grid; gap: 10px; }
+    footer { background: var(--coffee); color: #fff2dd; padding: 30px 20px; }
+    .footer-inner { max-width: 1040px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-logos { display: flex; gap: 10px; align-items: center; }
+    .footer-logos img { width: 46px; height: 46px; object-fit: contain; }
+    footer small { color: #ddc7a8; }
+    .floating-wa {
+      position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 54px; height: 54px;
+      border-radius: 50%; background: #207b45; color: white; display: grid; place-items: center;
+      text-decoration: none; font-size: 1.4rem; box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    }
+    @media (max-width: 760px) {
+      .nav { padding: 10px 14px; }
+      .nav-links { gap: 11px; font-size: .78rem; }
+      .nav-links .nav-order { display: none; }
+      .brand-lockup img { width: 38px; height: 38px; }
+      .brand-sub { font-size: .61rem; }
+      .hero { grid-template-columns: 1fr; padding-top: 34px; gap: 28px; }
+      .hero-copy { text-align: center; }
+      .hero-copy .eyebrow { margin: auto; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions, .hero-meta { justify-content: center; }
+      .hero-poster-wrap { max-width: 420px; transform: none; }
+      .section { padding: 45px 16px; }
+      .order-layout { grid-template-columns: 1fr; }
+      .order-aside { display: grid; grid-template-columns: 75px 1fr; gap: 0 15px; padding: 20px; }
+      .order-aside img { width: 75px; height: 75px; grid-row: span 2; }
+      .order-aside h3 { margin: 0; }
+      .order-aside p { margin: 5px 0; }
+      .order-aside .info-row { grid-column: 1 / -1; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 390px) {
+      .nav-links a:not(.nav-order) { font-size: .74rem; }
+      .brand-name { font-size: .91rem; }
+      .brand-sub { max-width: 125px; }
+      .menu-grid { gap: 10px; }
+      .menu-card { padding: 17px; }
+      .size-options { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">PRE-ORDER FANSHINE • OPEN UNTIL 20 OCTOBER 2026</div>
+  <header>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a class="brand-lockup" href="#home" style="text-decoration:none" aria-label="FANSHINE beranda">
+        <img src="assets/logo-fanshine.png" alt="Logo FANSHINE">
+        <span><span class="brand-name">FANSHINE</span><span class="brand-sub">DALGONA COFFEE · KEBISIK IX-B</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#tentang">Tentang</a>
+        <a class="btn btn-primary nav-order" href="#pesan" style="padding:10px 15px">Order Now ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">☕ A little coffee, a lot of happiness</span>
+        <h1>Your day,<br>your <em>dalgona.</em></h1>
+        <p>Enjoy your day with Dalgona Coffee by FANSHINE! Pilih ukuran favoritmu, isi form pre-order, lalu kirim detail pesanan melalui WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pesan">Pesan Sekarang <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-secondary" href="#menu">Lihat Menu</a>
+        </div>
+        <div class="hero-meta"><span>✦ Dibuat oleh KEBISIK IX-B</span><span>✦ Small Rp8.000 · Large Rp10.000</span></div>
+      </div>
+      <div class="hero-poster-wrap">
+        <img class="hero-poster" src="assets/poster-fanshine.jpg" alt="Poster promosi FANSHINE Dalgona Coffee">
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow">The menu</span>
+          <h2>Choose your cup.</h2>
+          <p>Dua pilihan ukuran, satu mood yang sama: menikmati harimu dengan FANSHINE.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="cup-art" aria-hidden="true"></div>
+            <span class="size-tag">01 · Small / Regular</span>
+            <h3>Regular Cup</h3>
+            <div class="price">Rp8.000</div>
+            <p>Pas untuk teman santai dan recharge sebentar.</p>
+          </article>
+          <article class="menu-card">
+            <div class="cup-art large" aria-hidden="true"></div>
+            <span class="size-tag">02 · Large / Jumbo</span>
+            <h3>Jumbo Cup</h3>
+            <div class="price">Rp10.000</div>
+            <p>Pilihan lebih besar untuk menemani harimu.</p>
+          </article>
+        </div>
+        <div class="notice">☕ <strong>Perhatian:</strong> Dalam satu form pesanan hanya bisa memilih satu ukuran. Kalau ingin Regular dan Jumbo sekaligus, kirim sebagai dua pesanan terpisah.</div>
+      </div>
+    </section>
+
+    <section class="section order-section" id="pesan">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow">Pre-order form</span>
+          <h2>Make it yours.</h2>
+          <p>Isi data dengan benar. Total harga akan dihitung otomatis sebelum kamu melanjutkan ke WhatsApp.</p>
+        </div>
+        <div class="order-layout">
+          <aside class="order-aside" id="tentang">
+            <img src="assets/logo-kelas.png" alt="Logo kelas KEBISIK IX-B">
+            <div>
+              <h3>FANSHINE Dalgona Coffee</h3>
+              <p>Produk pre-order dari kelas IX-B KEBISIK. Terima kasih sudah mendukung produk kami!</p>
+            </div>
+            <div class="info-row"><span class="info-icon">📅</span><span><strong>Periode PO</strong><br>Setiap hari sampai 20 Oktober 2026</span></div>
+            <div class="info-row"><span class="info-icon">📍</span><span><strong>Pengambilan</strong><br>Di sekolah / sesuai konfirmasi penjual.</span></div>
+            <div class="info-row"><span class="info-icon">💬</span><span><strong>Konfirmasi pesanan</strong><br>Pesanan diteruskan melalui WhatsApp penjual.</span></div>
+          </aside>
+
+          <form class="form-card" id="orderForm">
+            <h3>Form pemesanan</h3>
+            <p class="form-intro">Fields bertanda * wajib diisi.</p>
+            <div class="closed-banner" id="closedBanner">Periode pre-order sudah ditutup. Terima kasih atas minatmu!</div>
+            <div class="field">
+              <label for="customerName">Nama lengkap *</label>
+              <input id="customerName" name="customerName" type="text" autocomplete="name" maxlength="80" placeholder="Masukkan nama kamu" required>
+            </div>
+            <div class="field">
+              <label for="customerClass">Kelas *</label>
+              <input id="customerClass" name="customerClass" type="text" maxlength="30" placeholder="Contoh: IX-B" required>
+            </div>
+            <div class="field">
+              <label for="customerPhone">Nomor WhatsApp kamu *</label>
+              <input id="customerPhone" name="customerPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="Contoh: 08xxxxxxxxxx" required>
+            </div>
+            <div class="field">
+              <span class="field-label">Pilih ukuran * (hanya satu ukuran per pesanan)</span>
+              <div class="size-options">
+                <div class="size-option">
+                  <input id="sizeRegular" name="size" type="radio" value="regular" checked>
+                  <label for="sizeRegular"><strong>Regular / Small</strong><small>Rp8.000 per cup</small></label>
+                </div>
+                <div class="size-option">
+                  <input id="sizeJumbo" name="size" type="radio" value="jumbo">
+                  <label for="sizeJumbo"><strong>Jumbo / Large</strong><small>Rp10.000 per cup</small></label>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="quantity">Jumlah cup *</label>
+              <div class="qty-row">
+                <button class="qty-btn" type="button" id="minusQty" aria-label="Kurangi jumlah">−</button>
+                <input id="quantity" name="quantity" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" required>
+                <button class="qty-btn" type="button" id="plusQty" aria-label="Tambah jumlah">+</button>
+                <span style="color:var(--muted);font-size:.85rem">cup</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notes">Catatan (opsional)</label>
+              <textarea id="notes" name="notes" maxlength="300" placeholder="Contoh: catatan tambahan untuk penjual"></textarea>
+            </div>
+            <div class="total-box"><span>Total pesanan</span><strong id="totalPrice">Rp8.000</strong></div>
+            <div class="form-error" id="formError" role="alert"></div>
+            <button class="btn btn-primary" id="submitOrder" type="submit" style="width:100%">Lanjutkan Pesanan via WhatsApp ↗</button>
+            <p class="smallprint">Dengan melanjutkan, WhatsApp akan terbuka dengan detail pesanan yang sudah disiapkan. Kamu tetap perlu menekan tombol <strong>Kirim</strong> di WhatsApp agar pesanan sampai ke penjual.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logos">
+        <img src="assets/logo-fanshine.png" alt="Logo FANSHINE">
+        <img src="assets/logo-kelas.png" alt="Logo KEBISIK IX-B">
+        <div><strong>FANSHINE</strong><br><small>Your Daily Dose of Happiness.</small></div>
+      </div>
+      <small>© <span id="year"></span> FANSHINE · KEBISIK IX-B. Made with care ☕</small>
+    </div>
+  </footer>
+
+  <a class="floating-wa" id="floatingWhatsApp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Hubungi penjual melalui WhatsApp">✆</a>
+
+  <div class="success-overlay" id="successOverlay" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="success-card">
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <h2 id="successTitle">Almost there!</h2>
+      <p>Detail pesananmu sudah disiapkan. Kirim pesan melalui WhatsApp untuk meneruskan pesanan ke penjual.</p>
+      <div class="summary" id="orderSummary"></div>
+      <div class="success-actions">
+        <a class="btn btn-primary" id="sendWhatsApp" href="#" target="_blank" rel="noopener noreferrer">Kirim Pesanan ke WhatsApp ↗</a>
+        <button class="btn btn-secondary" id="closeSuccess" type="button">Kembali ke website</button>
+      </div>
+      <p class="smallprint">Pesanan belum diterima penjual sampai kamu menekan tombol Kirim di WhatsApp dan pesan berhasil terkirim.</p>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+    // Nomor WhatsApp penjual, format internasional tanpa tanda + atau spasi.
+    const SELLER_WHATSAPP = "6282137859755";
+    // Tanggal penutupan PO memakai waktu lokal perangkat pengunjung.
+    const PO_CLOSE = new Date(2026, 9, 20, 23, 59, 59, 999);
+    const PRICES = { regular: 8000, jumbo: 10000 };
+    const money = amount => new Intl.NumberFormat("id-ID", {
+      style: "currency", currency: "IDR", maximumFractionDigits: 0
+    }).format(amount);
+
+    const form = document.getElementById("orderForm");
+    const qtyInput = document.getElementById("quantity");
+    const totalPrice = document.getElementById("totalPrice");
+    const errorBox = document.getElementById("formError");
+    const submitButton = document.getElementById("submitOrder");
+    const closedBanner = document.getElementById("closedBanner");
+    const overlay = document.getElementById("successOverlay");
+    const summary = document.getElementById("orderSummary");
+    const sendWhatsApp = document.getElementById("sendWhatsApp");
+
+    function selectedSize() {
+      return form.querySelector('input[name="size"]:checked').value;
+    }
+    function validQuantity() {
+      const value = Number(qtyInput.value);
+      if (!Number.isInteger(value) || value < 1 || value > 99) return null;
+      return value;
+    }
+    function updateTotal() {
+      const qty = validQuantity();
+      const size = selectedSize();
+      totalPrice.textContent = money((qty || 0) * PRICES[size]);
+      return qty;
+    }
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.style.display = "block";
+    }
+    function clearError() {
+      errorBox.textContent = "";
+      errorBox.style.display = "none";
+    }
+    function updateClosedState() {
+      const closed = new Date() > PO_CLOSE;
+      closedBanner.style.display = closed ? "block" : "none";
+      submitButton.disabled = closed;
+      form.querySelectorAll("input, textarea, select, .qty-btn").forEach(el => {
+        el.disabled = closed;
+      });
+      // Tombol submit juga diperbarui setelah loop agar statusnya konsisten.
+      submitButton.disabled = closed;
+      if (closed) submitButton.textContent = "PO Telah Ditutup";
+    }
+    function addSummaryRow(label, value, isTotal = false) {
+      const row = document.createElement("div");
+      const left = document.createElement("span");
+      const right = document.createElement("strong");
+      left.textContent = label;
+      right.textContent = value;
+      if (isTotal) {
+        left.style.fontWeight = "900";
+        right.style.color = "var(--brown)";
+      }
+      row.append(left, right);
+      summary.appendChild(row);
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("floatingWhatsApp").href =
+      "https://wa.me/" + SELLER_WHATSAPP + "?text=" +
+      encodeURIComponent("Halo FANSHINE, saya ingin bertanya tentang pre-order Dalgona Coffee.");
+
+    document.getElementById("minusQty").addEventListener("click", () => {
+      const qty = validQuantity() || 1;
+      qtyInput.value = Math.max(1, qty - 1);
+      updateTotal();
+    });
+    document.getElementById("plusQty").addEventListener("click", () => {
+      const qty = validQuantity() || 1;
+      qtyInput.value = Math.min(99, qty + 1);
+      updateTotal();
+    });
+    qtyInput.addEventListener("input", updateTotal);
+    form.querySelectorAll('input[name="size"]').forEach(radio => {
+      radio.addEventListener("change", updateTotal);
+    });
+    form.querySelectorAll("input, textarea").forEach(el => {
+      el.addEventListener("input", clearError);
+    });
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      clearError();
+      updateClosedState();
+      if (new Date() > PO_CLOSE) {
+        showError("Periode PO sudah ditutup. Terima kasih atas minatmu!");
+        return;
+      }
+      if (!form.reportValidity()) return;
+
+      const qty = validQuantity();
+      if (qty === null) {
+        showError("Jumlah cup harus berupa angka bulat antara 1 sampai 99.");
+        qtyInput.focus();
+        return;
+      }
+      const name = document.getElementById("customerName").value.trim();
+      const customerClass = document.getElementById("customerClass").value.trim();
+      const rawPhone = document.getElementById("customerPhone").value.trim();
+      const phoneDigits = rawPhone.replace(/[^\d+]/g, "").replace(/(?!^)\+/g, "");
+      if (name.length < 2) {
+        showError("Masukkan nama lengkap yang valid.");
+        document.getElementById("customerName").focus();
+        return;
+      }
+      if (!customerClass) {
+        showError("Isi kelas kamu terlebih dahulu.");
+        document.getElementById("customerClass").focus();
+        return;
+      }
+      if (phoneDigits.replace(/\D/g, "").length < 9) {
+        showError("Periksa kembali nomor WhatsApp kamu.");
+        document.getElementById("customerPhone").focus();
+        return;
+      }
+
+      const size = selectedSize();
+      const sizeLabel = size === "regular" ? "Regular / Small" : "Jumbo / Large";
+      const price = PRICES[size];
+      const total = qty * price;
+      const notes = document.getElementById("notes").value.trim();
+      const orderId = "FS-" + Date.now().toString().slice(-8);
+      const lines = [
+        "Halo FANSHINE! Saya ingin melakukan pre-order Dalgona Coffee.",
+        "",
+        "*DETAIL PESANAN FANSHINE*",
+        "Kode pesanan: " + orderId,
+        "Nama: " + name,
+        "Kelas: " + customerClass,
+        "WhatsApp pemesan: " + rawPhone,
+        "Ukuran: " + sizeLabel,
+        "Jumlah: " + qty + " cup",
+        "Harga per cup: " + money(price),
+        "TOTAL: " + money(total),
+        notes ? "Catatan: " + notes : "Catatan: -",
+        "",
+        "Mohon konfirmasi pesanan dan informasi pengambilan. Terima kasih!"
+      ];
+      const waUrl = "https://wa.me/" + SELLER_WHATSAPP + "?text=" + encodeURIComponent(lines.join("\n"));
+
+      summary.replaceChildren();
+      addSummaryRow("Kode pesanan", orderId);
+      addSummaryRow("Nama", name);
+      addSummaryRow("Kelas", customerClass);
+      addSummaryRow("Ukuran", sizeLabel);
+      addSummaryRow("Jumlah", qty + " cup");
+      addSummaryRow("Harga per cup", money(price));
+      if (notes) addSummaryRow("Catatan", notes);
+      addSummaryRow("TOTAL", money(total), true);
+
+      sendWhatsApp.href = waUrl;
+      overlay.classList.add("show");
+      document.body.style.overflow = "hidden";
+      // Membuka WA hanya setelah pengunjung menekan tombol pada konfirmasi,
+      // sehingga browser HP tidak memblokir pop-up otomatis.
+    });
+
+    function closeOverlay() {
+      overlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+    document.getElementById("closeSuccess").addEventListener("click", closeOverlay);
+    overlay.addEventListener("click", event => {
+      if (event.target === overlay) closeOverlay();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && overlay.classList.contains("show")) closeOverlay();
+    });
+
+    updateTotal();
+    updateClosedState();
+  </script>
+</body>
+</html>
