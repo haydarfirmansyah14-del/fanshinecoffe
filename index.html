@@ -206,6 +206,75 @@
       .menu-card { padding: 17px; }
       .size-options { grid-template-columns: 1fr; }
     }
+    .dana-panel { margin-top: 14px; padding: 16px; border: 1px solid #b8d9f4; border-radius: 18px; background: linear-gradient(145deg,#f2f9ff,#ffffff); animation: pop .28s ease-out; }
+    .dana-panel[hidden] { display: none; }
+    .dana-panel-head { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+    .dana-badge { display: inline-grid; place-items: center; min-width: 56px; height: 36px; border-radius: 12px; color: #fff; background: #168de2; font-weight: 950; letter-spacing: .04em; }
+    .dana-panel-head strong, .dana-panel-head small { display: block; }
+    .dana-panel-head small { color: #526b7c; font-size: .78rem; margin-top: 3px; }
+    .dana-qr { display: block; width: min(100%, 340px); height: auto; margin: 0 auto; border: 8px solid white; border-radius: 14px; box-shadow: 0 8px 24px rgba(20,70,110,.12); }
+    .dana-warning { margin: 12px 0 0; color: #4b6170; font-size: .78rem; line-height: 1.5; }
+    /* FANSHINE motion system: subtle, polished, and mobile-friendly */
+    html { scroll-behavior: smooth; }
+    .topbar { animation: slideDown .65s ease both; }
+    header { animation: fadeIn .8s .08s ease both; }
+    .hero-copy > * { animation: riseIn .7s ease both; }
+    .hero-copy > *:nth-child(1) { animation-delay: .08s; }
+    .hero-copy > *:nth-child(2) { animation-delay: .16s; }
+    .hero-copy > *:nth-child(3) { animation-delay: .24s; }
+    .hero-copy > *:nth-child(4) { animation-delay: .32s; }
+    .hero-poster-wrap { animation: posterEnter .9s .18s cubic-bezier(.2,.75,.25,1) both, posterFloat 6s 1.2s ease-in-out infinite; }
+    .eyebrow { transition: transform .25s ease, box-shadow .25s ease; }
+    .eyebrow:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(74,33,11,.1); }
+    .menu-card { transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
+    .menu-card:hover { transform: translateY(-7px); box-shadow: 0 20px 42px rgba(53,27,9,.12); border-color: #c9a678; }
+    .cup-art { transform-origin: bottom center; transition: transform .35s ease; }
+    .menu-card:hover .cup-art { transform: perspective(100px) rotateX(-3deg) translateY(-4px) rotate(-3deg); }
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.22) 45%, transparent 70%); transform: translateX(-130%); transition: transform .65s ease; pointer-events: none; }
+    .btn-primary:hover::after { transform: translateX(130%); }
+    .qty-btn { transition: transform .16s ease, background .16s ease; }
+    .qty-btn:active { transform: scale(.91); }
+    .form-card, .order-aside { transition: box-shadow .25s ease, transform .25s ease; }
+    .form-card:focus-within { box-shadow: 0 18px 48px rgba(53,27,9,.13); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .menu-card.reveal:nth-child(2) { transition-delay: .12s; }
+    .floating-wa { transition: transform .22s ease, box-shadow .22s ease; animation: waPulse 3s 2s ease-in-out infinite; }
+    .floating-wa:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 12px 28px rgba(0,0,0,.24); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes posterEnter { from { opacity: 0; transform: translateY(24px) rotate(4deg) scale(.97); } to { opacity: 1; transform: translateY(0) rotate(1deg) scale(1); } }
+    @keyframes posterFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+    @keyframes waPulse { 0%, 85%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,.18), 0 0 0 0 rgba(32,123,69,.24); } 92% { box-shadow: 0 8px 24px rgba(0,0,0,.18), 0 0 0 9px rgba(32,123,69,0); } }
+    /* Studio polish: coffee-toned ticker, tactile cards, and focus states */
+    :root { --coffee: #3b1f13; --brown: #80502d; --gold: #d4a45d; --cream: #fff8ed; --cream-2: #f2dfc5; }
+    body { background-image: radial-gradient(ellipse at 8% 14%, rgba(212,164,93,.11), transparent 28%), radial-gradient(ellipse at 92% 42%, rgba(128,80,45,.07), transparent 26%); }
+    .topbar { background: linear-gradient(90deg,#32190f,#5a321f,#32190f); }
+    .brand-lockup img { border-radius: 50%; transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+    .brand-lockup:hover img { transform: rotate(-8deg) scale(1.06); }
+    .hero { position: relative; }
+    .hero-copy h1 { text-wrap: balance; }
+    .hero-copy h1 em { background: linear-gradient(100deg,#70401f,#b17a42 58%,#70401f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-poster-wrap { position: relative; isolation: isolate; }
+    .hero-poster-wrap::before { content: ""; position: absolute; inset: 14% -7% -5% 12%; background: linear-gradient(135deg,rgba(212,164,93,.38),rgba(128,80,45,.08)); border-radius: 32px; transform: rotate(-5deg); z-index: -1; filter: blur(1px); }
+    .coffee-ticker { overflow: hidden; padding: 13px 0; background: #3b1f13; color: #fff1da; border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); }
+    .ticker-track { display: flex; align-items: center; gap: 24px; width: max-content; white-space: nowrap; animation: tickerMove 32s linear infinite; font-size: .75rem; font-weight: 850; letter-spacing: .18em; }
+    .ticker-track b { color: #d9ae71; font-size: 1rem; }
+    .coffee-ticker:hover .ticker-track { animation-play-state: paused; }
+    .section-heading h2 { text-wrap: balance; }
+    .menu-card { position: relative; overflow: hidden; }
+    .menu-card::after { content: ""; position: absolute; width: 120px; height: 120px; right: -70px; top: -70px; border-radius: 50%; background: rgba(212,164,93,.13); transition: transform .4s ease; pointer-events: none; }
+    .menu-card:hover::after { transform: scale(1.8); }
+    .cup-art { filter: drop-shadow(0 8px 7px rgba(59,31,19,.11)); }
+    .btn:focus-visible, .floating-wa:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #d4a45d; outline-offset: 4px; }
+    .dana-panel { border-color: rgba(22,141,226,.25); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), 0 14px 30px rgba(20,70,110,.06); }
+    .dana-qr { transition: transform .25s ease, box-shadow .25s ease; }
+    .dana-qr:hover { transform: scale(1.015); box-shadow: 0 14px 32px rgba(20,70,110,.16); }
+    .total-box { border: 1px solid rgba(128,80,45,.12); }
+    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (max-width: 760px) { .hero-poster-wrap::before { inset: 12% -3% -3% 8%; } .ticker-track { gap: 17px; font-size: .68rem; } }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
@@ -216,7 +285,7 @@
   <header>
     <nav class="nav" aria-label="Navigasi utama">
       <a class="brand-lockup" href="#home" style="text-decoration:none" aria-label="FANSHINE beranda">
-        <img src="assets/logo-fanshine.png" alt="Logo FANSHINE">
+        <img src="logo-fanshine.png" alt="Logo FANSHINE">
         <span><span class="brand-name">FANSHINE</span><span class="brand-sub">DALGONA COFFEE · KEBISIK IX-B</span></span>
       </a>
       <div class="nav-links">
@@ -240,9 +309,15 @@
         <div class="hero-meta"><span>✦ Dibuat oleh KEBISIK IX-B</span><span>✦ Small Rp8.000 · Large Rp10.000</span></div>
       </div>
       <div class="hero-poster-wrap">
-        <img class="hero-poster" src="assets/poster-fanshine.jpg" alt="Poster promosi FANSHINE Dalgona Coffee">
+        <img class="hero-poster" src="poster-fanshine.jpg" alt="Poster promosi FANSHINE Dalgona Coffee">
       </div>
     </section>
+
+    <div class="coffee-ticker" aria-label="FANSHINE, brewed for brighter days">
+      <div class="ticker-track" aria-hidden="true">
+        <span>FRESH MOOD</span><b>✳</b><span>DALGONA MOMENT</span><b>✳</b><span>MADE TO BRIGHTEN YOUR DAY</span><b>✳</b><span>FANSHINE COFFEE</span><b>✳</b><span>FRESH MOOD</span><b>✳</b><span>DALGONA MOMENT</span><b>✳</b><span>MADE TO BRIGHTEN YOUR DAY</span><b>✳</b><span>FANSHINE COFFEE</span><b>✳</b>
+      </div>
+    </div>
 
     <section class="section" id="menu">
       <div class="section-inner">
@@ -280,7 +355,7 @@
         </div>
         <div class="order-layout">
           <aside class="order-aside" id="tentang">
-            <img src="assets/logo-kelas.png" alt="Logo kelas KEBISIK IX-B">
+            <img src="logo-kelas.png" alt="Logo kelas KEBISIK IX-B">
             <div>
               <h3>FANSHINE Dalgona Coffee</h3>
               <p>Produk pre-order dari kelas IX-B KEBISIK. Terima kasih sudah mendukung produk kami!</p>
@@ -329,6 +404,22 @@
               </div>
             </div>
             <div class="field">
+              <label for="paymentMethod">Metode pembayaran *</label>
+              <select id="paymentMethod" name="paymentMethod" required>
+                <option value="Cash" selected>Cash / Tunai</option>
+                <option value="DANA QR">DANA QR</option>
+              </select>
+              <p class="smallprint" id="paymentHint">Pembayaran tunai dilakukan saat pesanan diserahkan.</p>
+              <div class="dana-panel" id="danaPanel" hidden>
+                <div class="dana-panel-head">
+                  <span class="dana-badge">DANA</span>
+                  <div><strong>Scan untuk membayar</strong><small>Gunakan aplikasi DANA atau aplikasi pembayaran yang mendukung QR ini.</small></div>
+                </div>
+                <img class="dana-qr" src="dana-qr.jpg" alt="QR pembayaran DANA">
+                <p class="dana-warning">Sebelum membayar, pastikan nama penerima dan nominal sesuai. Simpan bukti pembayaran lalu kirimkan ke penjual melalui WhatsApp. QR ini ditampilkan dari gambar yang diberikan penjual.</p>
+              </div>
+            </div>
+            <div class="field">
               <label for="notes">Catatan (opsional)</label>
               <textarea id="notes" name="notes" maxlength="300" placeholder="Contoh: catatan tambahan untuk penjual"></textarea>
             </div>
@@ -345,8 +436,8 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-logos">
-        <img src="assets/logo-fanshine.png" alt="Logo FANSHINE">
-        <img src="assets/logo-kelas.png" alt="Logo KEBISIK IX-B">
+        <img src="logo-fanshine.png" alt="Logo FANSHINE">
+        <img src="logo-kelas.png" alt="Logo KEBISIK IX-B">
         <div><strong>FANSHINE</strong><br><small>Your Daily Dose of Happiness.</small></div>
       </div>
       <small>© <span id="year"></span> FANSHINE · KEBISIK IX-B. Made with care ☕</small>
@@ -389,6 +480,19 @@
     const overlay = document.getElementById("successOverlay");
     const summary = document.getElementById("orderSummary");
     const sendWhatsApp = document.getElementById("sendWhatsApp");
+    const paymentMethod = document.getElementById("paymentMethod");
+    const paymentHint = document.getElementById("paymentHint");
+
+    const danaPanel = document.getElementById("danaPanel");
+    function updatePaymentHint() {
+      const useDana = paymentMethod.value === "DANA QR";
+      danaPanel.hidden = !useDana;
+      paymentHint.textContent = useDana
+        ? "Scan QR DANA di bawah ini. Periksa penerima dan nominal sebelum mengonfirmasi pembayaran."
+        : "Pembayaran tunai dilakukan saat pesanan diserahkan.";
+    }
+    paymentMethod.addEventListener("change", updatePaymentHint);
+    updatePaymentHint();
 
     function selectedSize() {
       return form.querySelector('input[name="size"]:checked').value;
@@ -501,6 +605,7 @@
       const price = PRICES[size];
       const total = qty * price;
       const notes = document.getElementById("notes").value.trim();
+      const payment = paymentMethod.value;
       const orderId = "FS-" + Date.now().toString().slice(-8);
       const lines = [
         "Halo FANSHINE! Saya ingin melakukan pre-order Dalgona Coffee.",
@@ -514,6 +619,8 @@
         "Jumlah: " + qty + " cup",
         "Harga per cup: " + money(price),
         "TOTAL: " + money(total),
+        "Metode pembayaran: " + payment,
+        payment === "DANA QR" ? "Catatan pembayaran: pemesan memilih QR DANA di website. Penjual perlu memeriksa bukti pembayaran sebelum pesanan diserahkan." : "Catatan pembayaran: bayar tunai saat pesanan diserahkan.",
         notes ? "Catatan: " + notes : "Catatan: -",
         "",
         "Mohon konfirmasi pesanan dan informasi pengambilan. Terima kasih!"
@@ -527,6 +634,7 @@
       addSummaryRow("Ukuran", sizeLabel);
       addSummaryRow("Jumlah", qty + " cup");
       addSummaryRow("Harga per cup", money(price));
+      addSummaryRow("Metode pembayaran", payment);
       if (notes) addSummaryRow("Catatan", notes);
       addSummaryRow("TOTAL", money(total), true);
 
@@ -552,5 +660,25 @@
     updateTotal();
     updateClosedState();
   </script>
+<script>
+  // Reveal sections gently as they enter the viewport.
+  (function () {
+    const targets = document.querySelectorAll('.section-heading, .menu-card, .notice, .order-aside, .form-card, footer .footer-inner');
+    targets.forEach(el => el.classList.add('reveal'));
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+    targets.forEach(el => observer.observe(el));
+  })();
+</script>
 </body>
 </html>
